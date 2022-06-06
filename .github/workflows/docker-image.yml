@@ -11,8 +11,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    steps:
+    with:
+        image: dheeraj1780/docker101tutorial
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    
